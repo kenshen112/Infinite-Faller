@@ -8,10 +8,16 @@ public class EnemyGenerate : MonoBehaviour
     [SerializeField]
     int maxDistance = 0;
     [SerializeField]
-    GameObject Enemy;
+    GameObject enemy;
+    Queue<GameObject> enemyQueue;
     void Start()
     {
         
+    }
+
+    void Generate()
+    {
+
     }
 
     // Update is called once per frame
