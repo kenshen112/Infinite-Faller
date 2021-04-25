@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5010610655881165390}
   - component: {fileID: 5010610655881165389}
   - component: {fileID: 5010610655881165388}
+  - component: {fileID: 118764982470882822}
   m_Layer: 3
   m_Name: Death Box
   m_TagString: Obstacle
@@ -131,3 +132,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &118764982470882822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010610655881165379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23179c4754c234857a2e9fe0a186e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 0
+  enemy: {fileID: 0}

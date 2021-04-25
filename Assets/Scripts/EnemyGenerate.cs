@@ -10,6 +10,7 @@ public class EnemyGenerate : MonoBehaviour
     [SerializeField]
     GameObject enemy;
     Queue<GameObject> enemyQueue;
+
     void Start()
     {
         
@@ -17,12 +18,17 @@ public class EnemyGenerate : MonoBehaviour
 
     void Generate()
     {
-
+        // TODO Add previous instantiated Enemy objects. 
+        if (enemyQueue.Peek().transform.position.x < maxDistance)
+        {
+            // Nah M8
+        }
+        Instantiate(enemyQueue.Dequeue());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Enemies should move up
     }
 }
