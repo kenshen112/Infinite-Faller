@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    Camera cam;
+    public Camera cam;
     Transform camTransform;
     Vector2 lastPos;
-    Vector3 delta;
     [SerializeField]
-    float distanceY;
+    float movementSpeed;
     [SerializeField]
-    float smoothing;
+    float parallax;
+
     [SerializeField]
-    List<Transform> backgrounds;
-    List<float> parallaxScales;
+    float sizeImage;
+    float startPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = GetComponent<Camera>();
         camTransform = cam.transform;
-        parallaxScales = new List<float>();
-        for (int i = 0; i < backgrounds.Count; i++)
-        {
-            parallaxScales[i] = backgrounds[i].position.z * -1;
-        }
+        startPos = transform.position.y;
+    }
+
+    void Move()
+    {
+        Vector2 movementDelta = new Vector2(0, (movementSpeed));
+        transform.position += (Vector3)(movementDelta * Time.deltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < backgrounds.Count; i++)
-        {
-            float parallax = (lastPos.y - cam.transform.position.y) * parallaxScales[i];
-            float backgroundTargetY = backgrounds[i].position.y + parallax;
-            Vector3 backgroundPos = new Vector3(backgrounds[i].position.x, backgroundTargetY, backgrounds[i].position.z);
-            backgrounds[i].position = Vector3.Lerp(backgrounds[i].position, backgroundPos, smoothing * Time.deltaTime);
-        }
+        // Need to add a constant Y to background
+        Move();
+            
+        float pTemp = (lastPos.y - cam.transform.position.y) * (1 - parallax);
+        float distance = (cam.transform.position.y * parallax);
+        transform.position = new Vector3(transform.position.x, startPos + distance, transform.position.z);
         lastPos = camTransform.position;
-
+        if (pTemp > startPos + sizeImage)
+        {
+            startPos += sizeImage;
+        }
+        else if (pTemp < startPos - sizeImage)
+        {
+            startPos -= sizeImage;
+        }
     }
 }

@@ -16,14 +16,14 @@ public class EnemyGenerate : MonoBehaviour
         
     }
 
-    void Generate()
+    public void Generate()
     {
         // TODO Add previous instantiated Enemy objects. 
         if (enemyQueue.Peek().transform.position.x < maxDistance)
         {
             // Nah M8
+            Instantiate(enemyQueue.Dequeue());
         }
-        Instantiate(enemyQueue.Dequeue());
     }
 
     // Update is called once per frame

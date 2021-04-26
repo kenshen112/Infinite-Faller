@@ -9,22 +9,23 @@ using TMPro;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
-    float depthScore;
     Rigidbody2D rb;
     BoxCollider2D box;
-
-    [SerializeField]
-    GameObject ScoreCounter;
-
     [SerializeField]
     LayerMask Mask;
+    bool isAlive = true;
+    public bool Alive
+    {
+        get
+        {
+            return isAlive;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
-        depthScore = 0.00f;
-        ScoreCounter.GetComponent<TextMeshPro>().text = "Score: " + depthScore.ToString();
     }
 
    public void OnMove(InputAction.CallbackContext context)
@@ -58,11 +59,6 @@ public class Player : MonoBehaviour
             Debug.Log("DEAD");
             GetComponent<Rigidbody2D>().gravityScale = 0;
             Destroy(gameObject);
-        }
-        else
-        {
-            depthScore += 1;
-            ScoreCounter.GetComponent<TextMeshPro>().text = "Score: " + depthScore.ToString();
         }
     }
 }
